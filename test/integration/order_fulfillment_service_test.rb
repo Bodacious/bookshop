@@ -10,6 +10,7 @@ class OrderFulfillmentServiceTest < ActionDispatch::IntegrationTest
     assert_changes -> { Order.completed.count }, from: 0, to: 1 do
       OrderFulfillmentService.call(order)
     end
+    assert_predicate order.reload, :completed?
   end
 
 
